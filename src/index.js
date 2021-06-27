@@ -1,7 +1,9 @@
-import './templates/menu-gallery.hbs';
+import card from './templates/food-cards.hbs';
 import test from './templates/test-gallery.hbs';
-import menu from './menu.json';
+import foodCards from './templates/food-cards.hbs';
+import dataMenu from './menu.json';
 import './styles.css';
+import { map } from 'lodash';
 
 const Theme = {
     LIGHT: 'light-theme',
@@ -11,18 +13,17 @@ const Theme = {
 
 const ulContainer = document.querySelector('ul.js-menu');
 
-const foodMenuMarkup = createdCardFood(menu)
+const foodMenuMarkup = createdCardFood(dataMenu)
 
 ulContainer.insertAdjacentHTML('beforeend', foodMenuMarkup);
 
 
-console.table(menu);
-console.log(menu[0].description);
-console.log(menu[0].ingredients);
-console.log(menu[0].ingredients[2])
+console.table(dataMenu);
+console.log(dataMenu[0].description);
+console.log(dataMenu[0].ingredients);
+console.log(dataMenu[0].ingredients[2])
 
-
-function createdCardFood(card) {
-
-    return card.map(test).join('')
+function createdCardFood(menu) {
+    // return menu.map(test).join('');
+    return foodCards(menu)
 }
