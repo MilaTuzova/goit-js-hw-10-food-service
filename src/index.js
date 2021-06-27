@@ -1,4 +1,4 @@
-import card from './templates/food-cards.hbs';
+// import card from './templates/food-cards.hbs';
 import test from './templates/test-gallery.hbs';
 import foodCards from './templates/food-cards.hbs';
 import dataMenu from './menu.json';
@@ -22,6 +22,10 @@ console.table(dataMenu);
 console.log(dataMenu[0].description);
 console.log(dataMenu[0].ingredients);
 console.log(dataMenu[0].ingredients[2])
+
+console.log(foodCards(dataMenu));
+console.table(dataMenu);
+
 
 function createdCardFood(menu) {
     // return menu.map(test).join('');
