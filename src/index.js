@@ -1,33 +1,48 @@
-// import card from './templates/food-cards.hbs';
-import test from './templates/test-gallery.hbs';
 import foodCards from './templates/food-cards.hbs';
 import dataMenu from './menu.json';
 import './styles.css';
-import { map } from 'lodash';
+
+
+
+const ulContainer = document.querySelector('ul.js-menu');
+const foodMenuMarkup = createdCardFood(dataMenu)
+
+ulContainer.insertAdjacentHTML('beforeend', foodMenuMarkup);
+
+function createdCardFood(menu) {
+    // return menu.map(test).join('');
+    return foodCards(menu)
+};
 
 const Theme = {
     LIGHT: 'light-theme',
     DARK: 'dark-theme',
 };
+const { DARK, LIGHT } = Theme;
 
+const THEME_KEY = 'saveNameTheme';
 
-const ulContainer = document.querySelector('ul.js-menu');
+const body = document.querySelector('body');
+const inputToggle = document.querySelector('#theme-switch-toggle');
 
-const foodMenuMarkup = createdCardFood(dataMenu)
+inputToggle.addEventListener('change', onSwitchTumbler);
 
-ulContainer.insertAdjacentHTML('beforeend', foodMenuMarkup);
+body.className = LIGHT;
+localStorage.setItem(THEME_KEY, LIGHT)
 
+function onSwitchTumbler(e) {
 
-console.table(dataMenu);
-console.log(dataMenu[0].description);
-console.log(dataMenu[0].ingredients);
-console.log(dataMenu[0].ingredients[2])
+    if (localStorage.getItem(THEME_KEY) === DARK) {
 
-console.log(foodCards(dataMenu));
-console.table(dataMenu);
+        body.classList.replace(DARK, LIGHT);
+        localStorage.setItem(THEME_KEY, LIGHT)
 
+    } else
+    if (localStorage.getItem(THEME_KEY) === LIGHT) {
 
-function createdCardFood(menu) {
-    // return menu.map(test).join('');
-    return foodCards(menu)
+        body.classList.replace(LIGHT, DARK);
+        localStorage.setItem(THEME_KEY, DARK)
+
+    }
+
 }
