@@ -2,8 +2,6 @@ import foodCards from './templates/food-cards.hbs';
 import dataMenu from './menu.json';
 import './styles.css';
 
-
-
 const ulContainer = document.querySelector('ul.js-menu');
 const foodMenuMarkup = createdCardFood(dataMenu)
 
@@ -14,17 +12,22 @@ function createdCardFood(menu) {
     return foodCards(menu)
 };
 
+
+
 const Theme = {
     LIGHT: 'light-theme',
     DARK: 'dark-theme',
 };
 const { DARK, LIGHT } = Theme;
 
+
+
 const body = document.querySelector('body');
 const inputToggle = document.getElementById('theme-switch-toggle');
 
-window.onload = saveThemeFunction();
 inputToggle.addEventListener('change', onSwitchTumbler);
+window.onload = saveThemeFunction();
+
 
 function onSwitchTumbler(e) {
     if (localStorage.getItem('saveNameTheme') === DARK) {
