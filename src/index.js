@@ -20,29 +20,29 @@ const Theme = {
 };
 const { DARK, LIGHT } = Theme;
 
-const THEME_KEY = 'saveNameTheme';
-
 const body = document.querySelector('body');
-const inputToggle = document.querySelector('#theme-switch-toggle');
+const inputToggle = document.getElementById('theme-switch-toggle');
 
+window.onload = saveThemeFunction();
 inputToggle.addEventListener('change', onSwitchTumbler);
 
-body.className = LIGHT;
-localStorage.setItem(THEME_KEY, LIGHT)
-
 function onSwitchTumbler(e) {
-
-    if (localStorage.getItem(THEME_KEY) === DARK) {
-
-        body.classList.replace(DARK, LIGHT);
-        localStorage.setItem(THEME_KEY, LIGHT)
-
+    if (localStorage.getItem('saveNameTheme') === DARK) {
+        toggleSwitch(LIGHT);
     } else
-    if (localStorage.getItem(THEME_KEY) === LIGHT) {
+        toggleSwitch(DARK);
+}
 
-        body.classList.replace(LIGHT, DARK);
-        localStorage.setItem(THEME_KEY, DARK)
+function toggleSwitch(name) {
+    localStorage.setItem('saveNameTheme', name);
+    body.className = name
+}
 
+function saveThemeFunction() {
+    const saveNameInStorage = localStorage.getItem('saveNameTheme');
+    console.log(saveNameInStorage);
+    if (saveNameInStorage === DARK) {
+        body.className = saveNameInStorage;
+        inputToggle.checked = true;
     }
-
 }
