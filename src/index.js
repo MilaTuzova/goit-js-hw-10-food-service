@@ -12,40 +12,37 @@ function createdCardFood(menu) {
     return foodCards(menu)
 };
 
-
-
 const Theme = {
     LIGHT: 'light-theme',
     DARK: 'dark-theme',
 };
 const { DARK, LIGHT } = Theme;
 
-
-
 const body = document.querySelector('body');
 const inputToggle = document.getElementById('theme-switch-toggle');
 
+body.classList.add(LIGHT);
+
 inputToggle.addEventListener('change', onSwitchTumbler);
-window.onload = saveThemeFunction();
 
+function onSwitchTumbler() {
+    console.log(body.classList.toggle(DARK));
+    console.log(body.classList.toggle(LIGHT));
 
-function onSwitchTumbler(e) {
-    if (localStorage.getItem('saveNameTheme') === DARK) {
-        toggleSwitch(LIGHT);
-    } else
-        toggleSwitch(DARK);
-}
-
-function toggleSwitch(name) {
+    const name = body.classList.value;
+    // console.log(name)
     localStorage.setItem('saveNameTheme', name);
-    body.className = name
 }
+
+saveThemeFunction()
 
 function saveThemeFunction() {
     const saveNameInStorage = localStorage.getItem('saveNameTheme');
-    console.log(saveNameInStorage);
+
+    // console.log(saveNameInStorage);
     if (saveNameInStorage === DARK) {
-        body.className = saveNameInStorage;
+
         inputToggle.checked = true;
+        onSwitchTumbler();
     }
 }
