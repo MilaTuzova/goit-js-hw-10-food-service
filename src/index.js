@@ -30,7 +30,7 @@ function onSwitchTumbler() {
     console.log(body.classList.toggle(LIGHT));
 
     const name = body.classList.value;
-    // console.log(name)
+    console.log(name)
     localStorage.setItem('saveNameTheme', name);
 }
 
